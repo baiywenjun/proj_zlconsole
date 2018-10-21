@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>订单详情 - 百通e箱冷链容器租赁平台</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=1350,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/myset.css">
+    <link rel="stylesheet" href="../css/orderdetail.css">
+    <link rel="stylesheet" href="../css/breadcrumb.css">
+    <!--[if lt IE 9]>
+	    <script src="../js/html5.min.js"></script>
+	    <script src="../js/respond.min.js"></script>
+	<![endif]-->
+    <style type="text/css">
+    /*html,body{
+			height: 100%;
+		}
+*/
+
+    .step_box {
+        background: #f1f7e4;
+        height: 50px;
+        overflow: hidden;
+        border-top: 1px solid #FFF;
+    }
+
+    .step_item {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 25px 0 45px;
+        cursor: pointer;
+        position: relative;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .step_num {
+        width: 19px;
+        height: 19px;
+        line-height: 19px;
+        position: absolute;
+        text-align: center;
+        top: 15px;
+        left: 30px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #156600;
+        background-color: #fff;
+        border-radius: 2px;
+    }
+
+    .step_set {
+        background: #19A078;
+        color: #FFF;
+    }
+
+    .step_set .step_left {
+        width: 8px;
+        height: 55px;
+        /*background:url(http://www.codefans.net/jscss/demoimg/201011/bak.jpg) left top no-repeat;*/
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .step_item .step_left:before {
+        content: " ";
+        height: 0px;
+        width: 0px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        border-color: transparent transparent transparent #fff;
+        border-style: solid;
+        border-width: 27px;
+    }
+    /*.step_item .step_left:after{
+			content: " ";
+			height: 0px;
+			width: 0px;
+			position: absolute;
+			right: 100px;
+			top: 0px;
+			border-color: transparent transparent transparent #fff;
+			border-style:solid;
+			border-width: 27px;
+		}*/
+
+    .step_box div p {
+        padding-left: 20px;
+    }
+    /*.step_set .step_right{width:8px;height:55px;background:url(http://www.codefans.net/jscss/demoimg/201011/bak.jpg) left bottom no-repeat; position:absolute;right:-8px;top:0;}
+*/
+
+    #btn-list .layui-btn {
+        display: none;
+    }
+
+    .wrapper {
+        padding-top: 0;
+    }
+
+    #process {
+        margin-bottom: -3px;
+        margin-left: 1px;
+    }
+    .other-address{
+    	position: relative;
+    }
+    .other-address label{
+    	/*color: #999;
+    	padding-left: 20px;
+    	padding-top: 6px;*/
+    }
+    .other-address span{
+    	/*position: absolute;
+    	top: 3px;*/
+    }
+    .other-address select,.other-address input{
+    	height: 28px;
+    	line-height: 28px;
+    	border: solid 1px #F2F2F2;
+    	padding-left: 10px;
+    }
+    .other-address input{
+    	display: inline-block;
+    	width: calc(100% - 100px);
+    	padding-left: 10px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="process" class="breadcrumb flat">
+            <a href="#" class="active">订单审核</a>
+            <a href="#">等待付款</a>
+            <a href="#">确认付款</a>
+            <a href="#">等待发箱</a>
+            <a href="#">进行发箱</a>
+            <!-- <a href="#">查看物流</a> -->
+            <a href="#">收货租用</a>
+            <a href="#">申请回收</a>
+            <a href="#">回收入库</a>
+        </div>
+        <div class="my-address">
+            <!-- <div class="title-bar">收货人信息</div> -->
+            <p>
+                <label>收&ensp;货&ensp;人：</label>
+                <span>李韦锋</span>
+                <span>18520546151</span>
+            </p>
+            <p>
+                <label>收货地址：</label>
+                <span>广东省广州市天河区珠江新城0010号C栋10010室</span>
+            </p>
+        </div>
+        <div class="other-address">
+        	<p>
+            <label>收货地址：</label>
+            <span>
+            	<select id="province" onChange="showWholeList()"></select>
+		        <select id="city" onChange="showAreaList()"></select>
+		        <select id="area"></select>
+		     </span>
+		     </p>
+		     <p>
+		     <label>详细地址：</label>
+            <span>
+            	<input type="text" placeholder="详细地址"></input>
+            </span>
+		     	
+		     </p>
+        </div>
+        <!-- 
+			<div class="step_box">
+			    <div class="step_item">
+			      <div class="step_left"></div>
+			      <div class="step_num">1</div>
+			      <p>审核订单</p>
+			      <div class="step_right"></div>
+			    </div>
+			    <div class="step_item">
+			      <div class="step_left"></div>
+			      <div class="step_num">2</div>
+			      <p>等待付款</p>
+			      <div class="step_right"></div>
+			    </div>
+			    <div class="step_item">
+			      <div class="step_left"></div>
+			      <div class="step_num">3</div>
+			      <p>确认付款</p>
+			      <div class="step_right"></div>
+			    </div>
+			    <div class="step_item step_set">
+			      <div class="step_left"></div>
+			      <div class="step_num">4</div>
+			      <p>等待发箱</p>
+			      <div class="step_right"></div>
+			    </div>
+			    <div class="step_item">
+			      <div class="step_left"></div>
+			      <div class="step_num">5</div>
+			      <p>进行发箱</p>
+			    </div>
+			    <div class="step_item">
+			      <div class="step_left"></div>
+			      <div class="step_num">5</div>
+			      <p>查看物流</p>
+			    </div>
+			 </div> -->
+        <div class="my-box-list">
+            <div class="title-bar layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">租赁方式：<span>次租</span></div>
+                <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">订单编号：<a style="color: #000;">15989781858</a></div>
+                <!-- <div class="layui-col-xs9 layui-col-sm9 layui-col-md9" style="height: 36px;">
+						 <div id="process" class="breadcrumb flat">
+						    <a href="#" class="active">订单审核</a>
+						    <a href="#">等待付款</a>
+						    <a href="#">确认付款</a>
+						    <a href="#">等待发箱</a>
+						    <a href="#">进行发箱</a>
+						    <a href="#">查看物流</a>
+
+						    <a href="#">收货租用</a>
+						    <a href="#">申请回收</a>
+						    <a href="#">回收入库</a>
+						</div>
+                    </div> -->
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+        </div>
+        <ul class="price-detail">
+            <li class="days">
+                <label>租赁天数</label>
+                30天
+            </li>
+            <li class="insurance">
+                <div class="layui-form" action="">
+                    <!--  <div class="layui-form-item"> -->
+                    <label>保险费用</label>
+                    0元
+                    <!-- </div> -->
+                </div>
+            </li>
+            <li class="">
+                <label>配&ensp;送&ensp;费</label>100元</li>
+            <li class="">
+                <label>押&ensp;&ensp;&ensp;&ensp;金</label>1000元</li>
+            <li class="">
+                <label>客户留言</label>
+                买来装尸体的，结实点，保鲜效果好点，要不315见。
+            </li>
+            <li id="btn-list">
+                <label>总计费用</label>
+                <b style="color:#f40;">2000</b>&nbsp;元
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="pass">审核通过</a>
+                <a class="layui-btn layui-btn-sm layui-btn-danger" id="refuse">拒绝订单</a>
+                <a class="layui-btn layui-btn-sm" id="urge">催他付款</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="confirm">确认付款</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="deliver">为他发箱</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="express">物流信息</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="recycle">箱体回收</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="monitor">箱体监控</a>
+            </li>
+        </ul>
+    </div>
+    <div id="test"></div>
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script src="../js/islogin.js"></script>
+    <script type="text/javascript" src="../data/cities.js"></script>
+    <script>
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //…
+    });
+    layui.use('form', function() {
+        var form = layui.form;
+
+
+    });
+
+
+    layui.use('layer', function() {
+        var layer = layui.layer;
+
+
+    });
+
+    $(document).ready(function() {
+        // $('#btn-list .layui-btn').css("display","none");
+        getRequest();
+    });
+
+    function getRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        if (url.indexOf("?") != -1) { //判断是否有参数
+            var str = url.substr(1);
+            strs = str.split("&");
+
+            var id = strs[0].split("=")[1];
+            var status = decodeURI(strs[1].split("=")[1]);
+            //console.log(id+','+status); 
+            if (status == "未审核") {
+                $('#pass,#refuse').css("display", "block");
+
+            } else if (status == "未付款") {
+                $('#process a').eq(1).addClass("active");
+                $('#urge').css("display", "block");
+
+            } else if (status == "已付款") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#confirm').css("display", "block");
+            } else if (status == "待发箱") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#process a').eq(3).addClass("active");
+                $('#deliver').css("display", "block");
+            } else if (status == "已发箱") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#process a').eq(3).addClass("active");
+                $('#process a').eq(4).addClass("active");
+                $('#express').css("display", "block");
+            } else if (status == "租用中") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#process a').eq(3).addClass("active");
+                $('#process a').eq(4).addClass("active");
+                $('#process a').eq(5).addClass("active");
+                $('#monitor').css("display", "block");
+            } else if (status == "待收箱") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#process a').eq(3).addClass("active");
+                $('#process a').eq(4).addClass("active");
+                $('#process a').eq(5).addClass("active");
+                $('#recycle').css("display", "block");
+            } else if (status == "已完成") {
+                $('#process a').eq(1).addClass("active");
+                $('#process a').eq(2).addClass("active");
+                $('#process a').eq(3).addClass("active");
+                $('#process a').eq(4).addClass("active");
+                $('#process a').eq(5).addClass("active");
+            }
+        }
+
+
+    }
+
+    function clearAll() {
+        $('input').val("");
+        //console.log($('select option'));
+        $('select').val(1);
+    }
+
+    //       function go_fa_step(id){
+    // 	 for (i=1;i<7;i++){
+    // 	  document.getElementById("fa_"+i).className='step_item';
+    // 	 }
+    // 	 document.getElementById("fa_"+id).className+="step_set";
+    // }
+    $('#confirm').click(function() {
+        showModal("确认付款", "gathering.html", "600", "366", "");
+    });
+    </script>
+    <script type="text/javascript">
+    var province = document.getElementById("province");
+    var city = document.getElementById("city");
+    var area = document.getElementById("area");
+    window.onload = function() {
+        for (var i = 0; i < cityJson.length; i++) {
+            if (cityJson[i].postcode.substr(2, 4) == "0000")
+                province.add(new Option(cityJson[i].name, cityJson[i].postcode));
+        }
+        showWholeList();
+    }
+
+    function showWholeList() {
+        city.innerHTML = "";
+        area.innerHTML = "";
+        for (var i = 0; i < cityJson.length; i++) {
+            if (province.value.substr(0, 2) == cityJson[i].postcode.substr(0, 2) && cityJson[i].postcode.substr(2, 2) != "00" && cityJson[i].postcode.substr(4, 2) == "00")
+                city.add(new Option(cityJson[i].name, cityJson[i].postcode));
+            else if (city.value.substr(0, 4) == cityJson[i].postcode.substr(0, 4))
+                area.add(new Option(cityJson[i].name, cityJson[i].postcode));
+        }
+    }
+
+    function showAreaList() {
+        area.innerHTML = "";
+        for (var i = 0; i < cityJson.length; i++) {
+            if (city.value.substr(0, 4) == cityJson[i].postcode.substr(0, 4) && city.value.substr(4, 2) != cityJson[i].postcode.substr(4, 2))
+                area.add(new Option(cityJson[i].name, cityJson[i].postcode));
+        }
+    }
+    </script>
+</body>
+
+</html>

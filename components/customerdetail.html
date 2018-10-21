@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>账号详情 - 百通e箱冷链容器租赁平台</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"
+  />
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="../css/font.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/myset.css">
+  <link rel="stylesheet" href="../css/normalize.css">
+  <link rel="stylesheet" href="../css/xadmin.css">
+
+  <!--[if lt IE 9]>
+      <script src="../js/html5.min.js"></script>
+      <script src="../js/respond.min.js"></script>
+    <![endif]-->
+  <style type="text/css">
+    .head {
+      /*text-align: center;*/
+      margin-top: 10px;
+    }
+
+    .head img {
+      height: 80px;
+      width: 80px;
+     /* border-radius: 50%;*/
+     border:solid 3px #fff;
+     outline: solid 1px #f2f2f2;
+      
+    }
+    .further{
+      padding: 20px;
+      margin-top: 10px;
+      border:solid 1px #f2f2f2;
+      /*width: 1000px;*/
+    }
+
+    .layui-input-block {
+      margin-left: 50px;
+    }
+
+    .baseinfo {
+      margin-top: 20px;
+      line-height: 30px;
+    }
+
+    .baseinfo div {
+      font-size: 14px;
+    }
+
+    .baseinfo span {
+      color: #666;
+      margin-right: 2px;
+      display: inline-block;
+      width: 60px;
+      text-align: right;
+    }
+
+    .layui-col-space30>div {
+      padding: 0 15px;
+    }
+    .btn-ctn {
+      margin-top: 30px;
+      display: block;
+      text-align: center;
+      
+    }
+    .wrapper{
+      padding:10px 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="layui-form">
+      <div class="layui-row">
+        <div class="head layui-col-xs2 layui-col-sm2 layui-col-md2">
+          <img src="../images/head.jpg" />
+        </div>
+        <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
+          <div class="baseinfo">
+            <div class="layui-row layui-col-space30">
+              <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">账号</label>
+                  <div class="layui-input-block">
+                    <p style="margin-left: 5px;font-size: 16px;">loliconloli</p>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="layui-row layui-col-space30">
+              <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">邮箱</label>
+                  <div class="layui-input-block">
+                    <p>me@very.niu.bi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="layui-row layui-col-space30">
+              <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">手机</label>
+                  <div class="layui-input-block">
+                    <p>13112191819</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <fieldset class="further">
+        <legend>完善信息</legend>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">姓名</label>
+              <div class="layui-input-block">
+                <input type="text" name="name" value="艾罗立" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">公司</label>
+              <div class="layui-input-block">
+                <input type="text" name="company" value="广州有家科技有限公司" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">生日</label>
+              <div class="layui-input-block">
+                <input type="text" value="2008-08-08" name="birth" id="birth" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">部门</label>
+              <div class="layui-input-block">
+                <input type="text" name="departent" value="研发部" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">性别</label>
+              <div class="layui-input-block">
+                <input type="text" name="gender" value="女" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">职位</label>
+              <div class="layui-input-block">
+                <input type="text" name="job" value="高级撞壁工程师" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-row layui-col-space30">
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">座机</label>
+              <div class="layui-input-block">
+                <input type="text" name="telephone" value="020-12367158" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+          <div class="layui-col-xs6 layui-col-sm6 layui-col-md6">
+            <div class="layui-form-item">
+              <label class="layui-form-label">地址</label>
+              <div class="layui-input-block">
+                <input type="text" name="address" value="天河市广州区广东镇中国路地球村" autocomplete="off" class="layui-input">
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+  <script type="text/javascript" src="../js/xadmin.js"></script>
+  <script>
+    layui.use('laydate', function () {
+      var laydate = layui.laydate;
+
+      //执行一个laydate实例
+      laydate.render({
+        elem: '#birth' //指定元素
+      });
+    });
+  </script>
+</body>
+
+</html>

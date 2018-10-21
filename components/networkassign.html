@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>网点分配 - 百通e箱冷链容器租赁平台</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=1350,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/myset.css">
+    <link rel="stylesheet" href="../css/orderdetail.css">
+    <!--[if lt IE 9]>
+        <script src="../js/html5.min.js"></script>
+        <script src="../js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+   
+
+    .wrapper {
+        padding-top: 0;
+    }
+
+    
+    </style>
+</head>
+
+<body>
+    <div class="search-settings">
+        <blockquote class="layui-elem-quote">
+            <form class="layui-form" action="">
+                <div class="layui-row">
+                    <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">选择网点</label>
+                            <div class="layui-input-block">
+                                <select name="" lay-verify="required">
+                                    <option value="">请选择网点</option>
+                                    <option value="1">广州市天河区网点</option>
+                                    <option value="2">珠海市香洲区网点</option>
+                                    <option value="3">深圳市南山区网点</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" style="text-align: center;">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-sm my-gr-btn" lay-submit="" lay-filter="search">立即分配</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </blockquote>
+    </div>
+    <div class="wrapper">
+        <div class="my-address">
+            <!-- <div class="title-bar">收货人信息</div> -->
+            <p>
+                <label>收&ensp;货&ensp;人：</label>
+                <span>李韦锋</span>
+                <span>18520546151</span>
+            </p>
+            <p>
+                <label>收货地址：</label>
+                <span>广东省广州市天河区珠江新城0010号C栋10010室</span>
+            </p>
+        </div>
+        <!-- <div class="other-address">
+            <p>
+            <label>收货地址：</label>
+            <span>
+                <select id="province" onChange="showWholeList()"></select>
+                <select id="city" onChange="showAreaList()"></select>
+                <select id="area"></select>
+             </span>
+             </p>
+             <p>
+             <label>详细地址：</label>
+            <span>
+                <input type="text" placeholder="详细地址"></input>
+            </span>
+                
+             </p>
+        </div> -->
+        <div class="my-box-list">
+            <div class="title-bar layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">租赁方式：<span>次租</span></div>
+                <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">订单编号：<a style="color: #000;">15989781858</a></div>
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+            <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div>
+        </div>
+        <!--  <ul class="price-detail">
+            
+            <li id="btn-list">
+                <label>总计费用</label>
+                <b style="color:#f40;">2000</b>&nbsp;元
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="pass">审核通过</a>
+                <a class="layui-btn layui-btn-sm layui-btn-danger" id="refuse">拒绝订单</a>
+                <a class="layui-btn layui-btn-sm" id="urge">催他付款</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="confirm">确认付款</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="deliver">为他发箱</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="express">物流信息</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="recycle">箱体回收</a>
+                <a class="layui-btn layui-btn-sm my-gr-btn" id="monitor">箱体监控</a>
+            </li>
+        </ul> -->
+    </div>
+    <!-- <div id="test"></div> -->
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script>
+    layui.use('element', function() {
+        var element = layui.element;
+
+        //…
+    });
+    layui.use('form', function() {
+        var form = layui.form;
+
+
+    });
+
+
+    layui.use('layer', function() {
+        var layer = layui.layer;
+
+
+    });
+    </script>
+</body>
+
+</html>

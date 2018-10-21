@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>箱体分配 - 百通e箱冷链容器租赁平台</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=1350,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/myset.css">
+    <link rel="stylesheet" href="../css/orderdetail.css">
+    <!-- <link rel="stylesheet" href="../css/breadcrumb.css"> -->
+    <!--[if lt IE 9]>
+	    <script src="../js/html5.min.js"></script>
+	    <script src="../js/respond.min.js"></script>
+	<![endif]-->
+    <style type="text/css">
+    .wrapper {
+        padding-top: 0;
+        margin-top: 18px;
+    }
+
+    #process {
+        margin-bottom: -3px;
+        margin-left: 1px;
+    }
+    .my-box{
+    	position: relative;
+    }
+    .my-gr-btn{
+    	position: absolute;
+    	top: 20px;
+    	right: 20px;
+    }
+   
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="my-address">
+            <!-- <div class="title-bar">收货人信息</div> -->
+            <p>
+                <label>收&ensp;货&ensp;人：</label>
+                <span>李韦锋</span>
+                <span>18520546151</span>
+            </p>
+            <p>
+                <label>收货地址：</label>
+                <span>广东省广州市天河区珠江新城0010号C栋10010室</span>
+            </p>
+        </div>
+        <div class="my-box-list" id="list">
+            <div class="title-bar layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">租赁方式：<span>{{method}}</span></div>
+                <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">订单编号：<a style="color: #000;">{{order_no}}</a></div>
+            </div>
+            <div class="my-box layui-row" v-for="item in items">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px;" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">{{item.title}}</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">{{item.capacity}}L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">{{item.type}}型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>{{item.count}}个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">{{item.daily}}</b>&nbsp;元&nbsp;/&nbsp;天
+                    </div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>已分配：</span>
+                        <b style="color: #19A078;">{{item.cur_ration}}</b>&nbsp;/&nbsp;<b style="color: #f40;">{{item.count}}</b>
+
+                    </div>
+                    <!-- <div class="layui-col-xs2 layui-col-sm2 layui-col-md2"> -->
+                    	<button class="layui-btn my-gr-btn" @click="pick">分配</button>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <!-- <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div> -->
+            <!-- <div class="my-box layui-row">
+                <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                    <img src="../images/box.jpg" width="80px" height="60px" style="margin: 10px" />
+                </div>
+                <div class="layui-col-xs10 layui-col-sm10 layui-col-md10">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">智能冷链箱60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">60L</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">A型号</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>数量：</span>10个</div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <span>单价：</span>
+                        <b style="color: #f40;">100</b>&nbsp;元/天</div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script src="../js/islogin.js"></script>
+    <script src="../lib/vue.min.js"></script>
+    <script>
+    var vm = new Vue({
+                el: '#list',
+                data: {
+                	"order_no":"1321321381131",
+                	"method":"次租",
+                    items: [
+                        {
+                            "title": "智能冷链箱",
+                            "capacity": 90,
+                            "daily": 100,
+                            "monthly": 120,
+                            "count": 10,
+                            "cur_ration":2,
+                            "type": "A",
+                            "ration":["3213213213","312323213313","131232213123"]
+                        },
+                        {
+                            "title": "智能冷链箱",
+                            "capacity": 90,
+                            "daily": 100,
+                            "monthly": 120,
+                            "count": 10,
+                            "cur_ration":2,
+                            "type": "A",
+                            "ration":["3213213213","312323213313","131232213123"]
+                        },
+                        {
+                            "title": "智能冷链箱",
+                            "capacity": 90,
+                            "daily": 100,
+                            "monthly": 120,
+                            "count": 10,
+                            "cur_ration":2,
+                            "type": "A",
+                            "ration":["3213213213","312323213313","131232213123"]
+                        }      
+                    ],
+                   
+                },
+                methods:{
+                	pick:function(){
+                		showModal('查看箱体详情','boxlist.html','','','{{d.id}}');
+                	}
+                }
+
+        }); 
+               
+
+            layui.use('element', function() {
+                var element = layui.element;
+
+                //…
+            }); layui.use('form', function() {
+                var form = layui.form;
+
+
+            });
+
+
+            layui.use('layer', function() {
+                var layer = layui.layer;
+
+
+            });
+
+
+
+
+            function clearAll() {
+                $('input').val("");
+                //console.log($('select option'));
+                $('select').val(1);
+            }
+    </script>
+</body>
+
+</html>

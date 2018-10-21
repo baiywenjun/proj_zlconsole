@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>订单审核 - 百通e箱冷链容器租赁平台</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/myset.css">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/xadmin.css">
+    <!--[if lt IE 9]>
+      <script src="../js/html5.min.js"></script>
+      <script src="../js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .search-settings .layui-input-inline{
+            width: 80px;
+        }
+        .during{
+            width: 180px!important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="x-nav">
+        <span>当前位置：</span>
+        <span class="layui-breadcrumb">
+      <a href="">后台首页</a>
+      <a href="javascript:location.replace(location.href);">订单管理</a>
+      <a>
+        <cite>订单审核</cite>
+      </a>
+    </span>
+    </div>
+    <div class="search-settings">
+        <blockquote class="layui-elem-quote">
+            <form class="layui-form" action="">
+                <div class="layui-row">
+                    <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">订单号</label>
+                            <div class="layui-input-inline" style="width: 190px;">
+                                <input type="text" name="order_no" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs3 layui-col-sm3 layui-col-md3">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">下单时间</label>
+                            <div class="layui-input-inline during">
+                                <input type="text" class="layui-input" id="during" placeholder=" - " value="2017-01-01 - 2018-01-18">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">付款方式</label>
+                            <div class="layui-input-inline">
+                                 <select name="pay_type" lay-verify="required">
+                                  <option value="0">全部</option>
+                                  <option value="1">微信支付</option>
+                                  <option value="2">支付宝支付</option>
+                                  <option value="3">银联支付</option>
+                                  <option value="4">线下支付</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs2 layui-col-sm2 layui-col-md2">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">订单状态</label>
+                            <div class="layui-input-inline">
+                                 <select name="pay_type" lay-verify="required">
+                                  <option value="0">全部</option>
+                                  <option value="1">未审核</option>
+                                  <option value="2">未付款</option>
+                                  <option value="3">已付款</option>
+                                  <option value="4">待发箱</option>
+                                  <option value="5">已发箱</option>
+                                  <option value="6">租用中</option>
+                                  <option value="7">待收箱</option>
+                                  <option value="8">已完成</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs1 layui-col-sm1 layui-col-md1">
+                        <div class="layui-form-item">
+                            <div class="layui-input-inline">
+                                <button class="layui-btn layui-btn-sm my-gr-btn" lay-submit lay-filter="search">立即查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </blockquote>
+    </div>
+    <div class="table-container">
+        <table id="orderlist" lay-filter="orders"></table>
+       <!--  <table class="layui-table" lay-data="{height:315, url:'../data/orderreview.json', page:true, id:'test'}" lay-filter="test">
+          <thead>
+            <tr>
+              <th lay-data="{field: 'id', sort: true, align: 'center', width: 70}">序号</th>
+              <th lay-data="{field: 'order_no', align: 'center' ,width:120}">用户名</th>
+              <th lay-data="{ field: 'box_num', align: 'center', width: 80 }">箱体数</th>
+              <th lay-data="{ field: 'price', align: 'center' ,width:90}">订单金额</th>
+              <th lay-data="{ field: 'time', align: 'center',width:138 }">下单时间</th>
+              <th lay-data="{ field: 'name', align: 'center',width:100}">收货人</th>
+              <th lay-data="{ field: 'address', align: 'center', }">收货地址</th>
+              <th lay-data="{ field: 'type', align: 'center',width:90 }"><span style="color:#f40;">付款方式</span></th>
+              <th lay-data="{ field: 'status', align:'center',width:80}" class="tatat" style="color:#f40;">付款状态</th>
+              <th lay-data="{field: 'action', title: '操作',align:'center',templet: '#action',width:120}"></th>
+            </tr>
+          </thead>
+        </table> -->
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../js/xadmin.js"></script>
+    <script type="text/javascript" src="../js/function.js"></script>
+    <script>
+    layui.use('table', function() {
+        var table = layui.table;
+        table.render({
+            elem: '#orderlist'
+                // ,height: 'full-280'
+                ,
+            url: '../data/orderreview.json' //数据接口
+                ,
+            page: true //开启分页
+                ,
+            limits: [10, 30, 60],
+            limit: 10,
+            cols: [
+                [ //表头
+                    { field: 'id', title: '序号', sort: true, align: 'center', width: 70 }
+                    , { field: 'order_no', title: '订单号', align: 'center' ,width:120}
+                    , { field: 'box_num', title: '箱体数', align: 'center', width: 80 }
+                    , { field: 'price', title: '订单金额', align: 'center' ,width:90}
+                    , { field: 'time', title: '下单时间', align: 'center',width:138 }
+                    , { field: 'name', title: '收货人', align: 'center',width:100}
+                    , { field: 'address', title: '收货地址', align: 'center', }
+                    , { field: 'type', title: '付款方式', align: 'center',width:90 }
+                    // , { field: 'status', title: '付款状态', align: 'center',width:80}
+                    , { field: 'status', title: '订单状态', align: 'center',width:80,templet:"#status"}
+                    // , { title: '操作', align: 'center', toolbar: '#toolbar', width: 110 }
+                    , {field: 'action', title: '操作',align:'center',templet: '#action',width:180}
+                ]
+            ],
+            page: true
+        });
+
+    });
+    </script>
+   <!--  <script type="text/html" id="toolbar">
+      <a class="layui-table-link" lay-event="view" onclick="showModal('查看订单详情','orderdetail.html','880','','{{d.id}}')">查看详情</a>
+      <span class="vert-line"></span>
+      <a class="layui-table-link" lay-event="edit">编辑</a>
+      <span class="vert-line"></span>
+      <a class="layui-table-link" lay-event="forbid">冻结</a>
+      <span class="vert-line"></span>
+      <a class="layui-table-link" lay-event="delete">删除</a>
+    </script> -->
+    <script type="text/javascript">
+        layui.use('table', function(){
+          var table = layui.table;
+          table.on('tool(orders)', function(obj){
+            // var data = obj.data;
+            // if(obj.event === 'view'){
+            //   //layer.msg('ID：'+ data.id + ' 的查看操作');
+            //   showModal('查看账号详情','accountedit.html','680','380');
+            // } else 
+            if(obj.event === 'delete'){
+              layer.confirm('真的删除行么？', function(index){
+                obj.del();
+                layer.close(index);
+              });
+            }else if(obj.event === 'forbid'){
+              layer.confirm('冻结后该账号将不能访问系统！', function(index){
+                obj.data.status="冻结";
+                layer.close(index);
+              });
+            }
+          });
+        });
+    </script>
+    <script type="text/html" id="action">
+      <a class="layui-table-link" onclick="showModal('分配网点','networkassign.html','800','520','{{d.id}}','{{d.status}}')">网点分配</a>
+      <span class="vert-line"></span>
+     <!--  <a class="layui-table-link" onclick="showModal('{{d.sitename}}的详情','launchdetail.html')"> -->
+        <!-- {{d.action.todo}} -->
+        {{#  if(d.status=="未审核"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">去审核</a>
+        {{#  }    }} 
+        {{#  if(d.status=="未付款"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">去催款</a>
+        {{#  }    }} 
+        {{#  if(d.status=="已付款"){         }}               
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">去收款</a>
+        {{#  }    }} 
+        {{#  if(d.status=="待发箱"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">去发箱</a>
+        {{#  }    }} 
+        {{#  if(d.status=="已发箱"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">查物流</a>
+        {{#  }    }} 
+        {{#  if(d.status=="待收箱"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">去收箱</a>
+        {{#  }    }} 
+        {{#  if(d.status=="租用中"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">看详情</a>
+        {{#  }    }} 
+        {{#  if(d.status=="已完成"){         }}
+            <a class="layui-table-link" onclick="showOrder('订单{{d.order_no}}的详情','orderdetail.html','','','{{d.id}}','{{d.status}}')">查流程</a>
+        {{#  }    }} 
+    <!--   </a> -->
+    </script>
+    <script type="text/html" id="status">
+      <p class="layui-table-link">
+        {{#  if(d.status=="未审核"){         }}
+               <span style="color: #F40">未审核</span>
+        {{#  }    }} 
+        {{#  if(d.status=="未付款"){         }}
+               <span style="color: #966">未付款</span>
+        {{#  }    }} 
+        {{#  if(d.status=="已付款"){         }}
+               <span style="color: #c63">已付款</span>
+        {{#  }    }} 
+        {{#  if(d.status=="待发箱"){         }}
+               <span style="color:#90c">待发箱</span>
+        {{#  }    }} 
+        {{#  if(d.status=="已发箱"){         }}
+               <span style="color: #19A078">已发箱</span>
+        {{#  }    }} 
+        {{#  if(d.status=="租用中"){         }}
+               <span style="color: #c39">租用中</span>
+        {{#  }    }} 
+        {{#  if(d.status=="待收箱"){         }}
+               <span style="color: #f90">待收箱</span>
+        {{#  }    }}
+        {{#  if(d.status=="已完成"){         }}
+               <span style="color: #69c">已完成</span>
+        {{#  }    }} 
+        
+            
+     <!--  {{d.status}} -->
+      </p>
+    </script>
+    <script>
+        layui.use('laydate', function(){
+          var laydate = layui.laydate;   
+          //日期范围
+          laydate.render({
+            elem: '#during'
+            ,range: true
+          });    
+        });
+
+        // layui.use('laytpl', function(){
+        //     var laytpl = layui.laytpl;
+        //     var data = { //数据
+        //       "title":"Layui常用模块"
+        //       ,"list":[{"modname":"弹层","alias":"layer","site":"layer.layui.com"},{"modname":"表单","alias":"form"}]
+        //     }
+        //     var getTpl = status.innerHTML
+        //     ,view = document.getElementById('view');
+        //     laytpl(getTpl).render(data, function(html){
+        //       view.innerHTML = html;
+        //     });
+        // });
+        // 
+        // 
+        // layui.use('layer', function(){
+        //   var layer = layui.layer;
+        //   var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        //         //parent.layer.close(index);
+        //         layer.iframeAuto(index);
+        // });   
+          
+   
+    </script>
+</body>
+
+</html>
